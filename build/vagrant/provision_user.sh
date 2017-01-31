@@ -28,7 +28,7 @@ vim -c "PluginInstall" -c "quit" -c "quit" 2>&1 > /dev/null
 
 # composer for php
 [ -d ~/bin ] || mkdir ~/bin
-curl -o ~/bin/composer.phar https://getcomposer.org/composer.phar
+curl -so ~/bin/composer.phar https://getcomposer.org/composer.phar
 chmod 755 ~/bin/composer.phar
 ln -s ~/bin/composer.phar ~/bin/composer
 
