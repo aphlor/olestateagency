@@ -24,7 +24,7 @@ sudo chsh -s /bin/zsh $USER
 mkdir -p ~/.vim/{bundle,doc}
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cp -v ~/setup_files/skellington/vim/.vimrc ~/
-vim -c "PluginInstall" -c "quit" -c "quit" 2>&1 > /dev/null
+vim -c "PluginInstall" -c "quitall" 2>&1 > /dev/null
 
 # composer for php
 [ -d ~/bin ] || mkdir ~/bin
