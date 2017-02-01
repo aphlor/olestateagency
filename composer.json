@@ -29,7 +29,7 @@
     },
     "scripts": {
         "update-db": [
-            "php artisan migrate"
+            "php artisan migrate --database=db_admin"
         ]
     },
     "config": {
