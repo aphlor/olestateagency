@@ -36,6 +36,35 @@ ln -s ~/bin/composer.phar ~/bin/composer
 sudo cp -v ~root/.my.cnf "$HOME/.my.cnf"
 sudo chown $USER: ~/.my.cnf
 
+# create two database accounts, and grant rights
+_web_password="$(pwgen -s -c -n 32 1)"
+_dba_password="$(pwgen -s -c -n 32 1)"
+
+cat <<-EOF | mysql
+CREATE DATABASE olestateagency;
+CREATE USER web_user@'%' IDENTIFIED BY '${_web_password}';
+CREATE USER dba_user@'%' IDENTIFIED BY '${_dba_password}';
+GRANT SELECT, INSERT, UPDATE, DELETE ON olestateagency.* TO web_user@'%';
+GRANT ALL PRIVILEGES ON olestateagency.* TO dba_user@'%';
+FLUSH PRIVILEGES
+EOF
+
+# generate a crypto secure random string for the APP_KEY value
+_crypto_key="base64:$(php -r 'print base64_encode(random_bytes(32));')"
+
+# generate the $ROOT/.env file from build/env.build
+sed "s/##APP_KEY##/${_crypto_key}/g;
+     s/##APP_URL##/http:\/\/localhost/g;
+     s/##DB_WEB_HOST##/127.0.0.1/g;
+     s/##DB_WEB_DATABASE##/olestateagency/g;
+     s/##DB_WEB_USERNAME##/web_user/g;
+     s/##DB_WEB_PASSWORD##/${_web_password}/g;
+     s/##DB_DBA_HOST##/127.0.0.1/g;
+     s/##DB_DBA_DATABASE##/olestateagency/g;
+     s/##DB_DBA_USERNAME##/dba_user/g;
+     s/##DB_DBA_PASSWORD##/${_dba_password}/g" \
+    < /vagrant/build/env.build > /vagrant/.env
+
 # environment setup is complete
 figlet provision complete
 cat <<-EOF
