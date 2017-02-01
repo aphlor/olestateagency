@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
   # config.vm.box_check_update = false
 
   # Port forward MySQL so we can use local client software
-  config.vm.network "forwarded_port", guest: 3306, host: 3306
+  # config.vm.network "forwarded_port", guest: 3306, host: 3306
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
