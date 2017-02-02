@@ -1,4 +1,6 @@
+# things related to vagrant
 /.vagrant
+/*.log
 
 # laravel ignores
 /node_modules
