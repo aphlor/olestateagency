@@ -8,6 +8,7 @@ use App\Models\PriceFormat;
 use App\Models\Property;
 use App\Models\PropertyStatus;
 use App\Models\PropertyImage;
+use App\Models\FeaturedProperty;
 
 class DatabaseSeeder extends Seeder
 {
@@ -106,13 +107,21 @@ class DatabaseSeeder extends Seeder
             )[0]->id,
         ])->id;
 
+        FeaturedProperty::create([
+            'property_id' => (
+                Property::where('title', 'Victorian townhouse')
+                    ->get()
+            )[0]->id,
+            'display_order' => 0,
+        ]);
+
         PropertyImage::create([
             'property_id' => (
                 Property::where('title', 'Victorian townhouse')
                     ->get()
             )[0]->id,
             'display_order' => 0,
-            'image_filename' => 'funky-house-1223259.jpg',
+            'image_filename' => 'old-house-1194752.jpg',
             'description' => 'House image',
         ]);
 

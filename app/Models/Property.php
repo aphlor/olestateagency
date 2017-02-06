@@ -63,4 +63,14 @@ class Property extends Model
     {
         return $this->hasOne(PropertyStatus::class, 'id', 'property_status_id');
     }
+
+    /**
+     * Foreign key for property images
+     *
+     * @return Model
+     */
+    public function propertyImage()
+    {
+        return $this->hasMany(PropertyImage::class, 'property_id', 'id');
+    }
 }
