@@ -46,6 +46,7 @@ class CreatePropertiesTable extends Migration
             $table->foreign('property_status_id')
                   ->references('id')
                   ->on('property_statuses');
+            $table->timestamps();
             $table->softDeletes();              // handle "soft" deletion
         });
     }
