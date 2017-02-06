@@ -30,6 +30,9 @@
     "scripts": {
         "update-db": [
             "php artisan migrate --database=db_admin"
+        ],
+        "dev-db": [
+            "php artisan migrate:refresh --database=db_admin; php artisan db:seed -vv"
         ]
     },
     "config": {
