@@ -1,0 +1,21 @@
+img.list-propertyimage {
+    width: 100%;
+}
+
+div.list-property {
+    padding-top: 2em;
+    border-bottom: 1px solid lightgrey;
+}
+
+div.list-image-area {
+}
+
+h4.list-price {
+    color: red;
+}
+
+footer {
+    background-color: #220022;
+    color: white;
+    padding: 2em;
+}

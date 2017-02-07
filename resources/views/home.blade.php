@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Home</div>
+                <div class="panel-heading">This is the home page</div>
 
                 <div class="panel-body">
-                    Make pictures of houses appear here
+                    Yoy might want to go to the <a href="/properties">properties</a> currently for sale.
                 </div>
             </div>
         </div>
