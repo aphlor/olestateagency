@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // until we decide on a dashboard layout, go straight to properties
+        return redirect()->route('properties');
     }
 }

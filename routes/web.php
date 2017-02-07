@@ -1,16 +1,18 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/**
+ * Web routes
+ *
+ * Defines how web URLs are responded to
+ */
 
-Route::get('/', 'HomeController@index');
+// Root path to the HomeController
+Route::get('/', 'HomeController@index')
+    ->name('home');
 
+// List of available properties (permit POST verb for search purposes)
+Route::match(['get', 'post'], '/properties', 'PropertyListController@index')
+    ->name('properties');
+
+// Laravel default authentication layer controllers
 Auth::routes();
