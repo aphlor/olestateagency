@@ -22,6 +22,9 @@ class CreatePropertiesTable extends Migration
                   ->nullable();                 // long-format description for detail view
             $table->text('short_description')
                   ->nullable();                 // short description for search results view
+            $table->tinyInteger('bedrooms')
+                  ->unsigned()
+                  ->nullable();
             $table->string('address_line_1');   // address
             $table->string('address_line_2')
                   ->nullable();

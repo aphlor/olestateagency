@@ -88,6 +88,7 @@ class DatabaseSeeder extends Seeder
                 '    <li>Situated in the circus area of Bath</li>' .
                 '    <li>Monocle and mahogany cane provided</li>' .
                 '</ul>',
+            'bedrooms' => 7,
             'address_line_1' => '1 Widcombe Crescent',
             'town' => 'Bath',
             'county' => 'Bath & North East Somerset',
@@ -138,6 +139,7 @@ class DatabaseSeeder extends Seeder
                 '    <li>Large lounge with wood burner</li>' .
                 '    <li>Two acre garden with stream</li>' .
                 '</ul>',
+            'bedrooms' => 5,
             'address_line_1' => 'The Old Mill',
             'address_line_2' => 'Badgersville Lane',
             'town' => 'Compton Durville',
@@ -181,6 +183,7 @@ class DatabaseSeeder extends Seeder
                 '    <li>Easy access to the great outdoors</li>' .
                 '    <li>No neighbours for sixty miles</li>' .
                 '</ul>',
+            'bedrooms' => 1,
             'address_line_1' => 'The Shack',
             'address_line_2' => 'The Desert',
             'town' => 'Trowbridge',

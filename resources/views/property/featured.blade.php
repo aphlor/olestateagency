@@ -1,3 +1,4 @@
+@if (count($featuredProperties))
 <div class="jumbotron">
     <h3>Featured properties:</h3>
 
@@ -17,3 +18,4 @@
     </div>
     @endforeach
 </div>
+@endif

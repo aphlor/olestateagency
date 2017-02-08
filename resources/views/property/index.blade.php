@@ -5,6 +5,12 @@
     <!-- property listings -->
     <div class="row">
         <div class="col-md-9">
+            @if ($totalProperties === 0)
+                <div class="row">
+                    <p><error>No properties found!</error> Try changing your filters.</p>
+                </div>
+            @endif
+
             <!-- featured property -->
             @include('property.featured')
 

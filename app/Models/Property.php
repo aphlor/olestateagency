@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Property extends Model
 {
+    use SoftDeletes;
+
     /**
      * Override the table name because it is not a conventional plural.
      *
@@ -23,6 +26,7 @@ class Property extends Model
         'subtitle',
         'description',
         'short_description',
+        'bedrooms',
         'address_line_1',
         'address_line_2',
         'town',
