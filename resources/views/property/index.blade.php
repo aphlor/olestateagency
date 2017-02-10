@@ -9,6 +9,10 @@
                 <div class="row">
                     <p><error>No properties found!</error> Try changing your filters.</p>
                 </div>
+            @else
+                <div class="row">
+                    <p>{{ $totalProperties }} {{ str_plural('property', $totalProperties) }} match your filters.
+                </div>
             @endif
 
             <!-- featured property -->
@@ -23,29 +27,27 @@
         <!-- sidenav -->
         <div class="col-md-3">
             <h4>Filter your results</h4>
-            <form>
+            <form method="post" action="/properties">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <label for="minPrice">Minimum price</label>
-                    <input type="number" class="form-control" id="minPrice" placeholder="e.g. 100,000"/>
+                    <input type="number" class="form-control" id="minPrice" name="minPrice" value="{{ request('minPrice') }}" placeholder="e.g. 100,000"/>
                 </div>
                 <div class="form-group">
                     <label for="maxPrice">Maximum price</label>
-                    <input type="number" class="form-control" id="maxPrice" placeholder="e.g. 500,000"/>
+                    <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="{{ request('maxPrice') }}" placeholder="e.g. 500,000"/>
                 </div>
                 <div class="form-group">
                     <label for="bedrooms">Number of bedrooms</label>
-                    <select class="form-control" id="bedrooms">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6+">6+</option>
+                    <select class="form-control" id="bedrooms" name="bedrooms">
+                        @foreach ($bedrooms as $label => $value)
+                        <option value="{{ $value }}"{{ $value === request('bedrooms') ? ' selected' : '' }}>{{ $label }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="keywords">Keywords</label>
-                    <input type="text" class="form-control" id="keywords" placeholder="e.g. garage, conservatory"/>
+                    <input type="text" class="form-control" id="keywords" name="keywords" value="{{ request('keywords') }}" placeholder="e.g. garage, conservatory"/>
                 </div>
                 <button type="submit" class="btn btn-default">Update results</button>
                 <input type="reset" class="btn" value="Reset"/>

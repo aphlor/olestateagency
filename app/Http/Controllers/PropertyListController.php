@@ -11,6 +11,17 @@ use App\Models\FeaturedProperty;
 
 class PropertyListController extends Controller
 {
+    /** @var array Handling number of bedrooms */
+    private static $bedrooms = [
+        'any' => '',
+        '1' => '1',
+        '2' => '2',
+        '3' => '3',
+        '4' => '4',
+        '5' => '5',
+        '6+' => '6+',
+    ];
+
     /**
      * Show the application dashboard.
      *
@@ -83,6 +94,7 @@ class PropertyListController extends Controller
         }
 
         return view('property.index', [
+            'bedrooms' => self::$bedrooms,
             'totalProperties' => count($featuredProperties) + count($properties),
             'featuredProperties' => $featuredProperties,
             'properties' => $properties,
