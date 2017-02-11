@@ -82,7 +82,14 @@ class DatabaseSeeder extends Seeder
                 '    <li>Three floors</li>' .
                 '    <li>Situated in the circus area of Bath</li>' .
                 '    <li>Monocle and mahogany cane provided</li>' .
-                '</ul>',
+                '</ul>' .
+                '<p>This is a delightful Victorian property situated in the quiet area ' .
+                'of Widcombe Hill, with close access to both the City Centre and University ' .
+                'of Bath. Parking is available by permits which can be obtained from the ' .
+                'council.</p>' .
+                '<p>This property has a new kitchen which has recently been fitted, consisting ' .
+                'of a high-end granite worktop and inbuild facilities and induction hob.</p>' .
+                '<p>Please contact our office to arrange a viewing.</p>',
             'short_description' => '<ul>' .
                 '    <li>Three floors</li>' .
                 '    <li>Situated in the circus area of Bath</li>' .

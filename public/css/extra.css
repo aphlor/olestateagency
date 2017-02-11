@@ -3,7 +3,7 @@ img.list-propertyimage {
 }
 
 img.list-imageicon {
-    width: 30%;
+    width: 32%;
     padding-right: 1%;
 }
 
@@ -15,8 +15,16 @@ div.list-property {
 div.list-image-area {
 }
 
+div.view-buttons div a.btn {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
 h4.list-price {
     color: red;
+}
+
+span.twopspacer {
 }
 
 footer {

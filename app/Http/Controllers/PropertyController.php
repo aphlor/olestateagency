@@ -21,6 +21,24 @@ class PropertyController extends Controller
         $property = Property::find($id);
         $images = PropertyImage::where('property_id', $id)->get();
 
+        $address = implode(
+            ', ',
+            array_map(
+                function ($i) {
+                    if (isset($i) && !empty($i)) {
+                        return $i;
+                    }
+                },
+                [
+                    $property->address_line_1,
+                    $property->address_line_2,
+                    $property->town,
+                    $property->county,
+                    $property->postcode,
+                ]
+            )
+        );
+
         $imagesSplitByThree = [];
         $accumulator = [];
         foreach ($images as $image) {
@@ -36,6 +54,7 @@ class PropertyController extends Controller
 
         return view('property.view', [
             'property' => $property,
+            'address' => $address,
             'images' => $imagesSplitByThree,
         ]);
     }
