@@ -30,6 +30,7 @@ class PropertyListController extends Controller
      */
     public function index(Request $request)
     {
+        // default values for the filters
         $filters = [
             'minPrice' => $request->input('minPrice', null),
             'maxPrice' => $request->input('maxPrice', null),
@@ -41,7 +42,12 @@ class PropertyListController extends Controller
             }),
         ];
 
-        $featuredProperties = FeaturedProperty::all();
+        // we need these models; set the classes up now before we look at filters
+        $featuredProperties = new FeaturedProperty;
+        $properties = new Property;
+
+
+        $featuredProperties = $featuredProperties->all();
 
         // $featuredProperties = DB::table('featured_properties')
         //     ->join('properties', 'properties.id', 'featured_properties.property_id')
@@ -49,7 +55,7 @@ class PropertyListController extends Controller
         //     ->where('property_statuses.marketable', '=', 1)
         //     ->get();
 
-        $properties = Property::whereNotIn('id', function ($q) {
+        $properties = $properties->whereNotIn('id', function ($q) {
             $q->select('property_id')
                 ->from('featured_properties');
         })->get();
