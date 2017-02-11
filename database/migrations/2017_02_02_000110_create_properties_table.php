@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -52,6 +53,19 @@ class CreatePropertiesTable extends Migration
             $table->timestamps();
             $table->softDeletes();              // handle "soft" deletion
         });
+
+        DB::statement('
+            ALTER TABLE properties
+                    ADD FULLTEXT key_search (title,
+                                             subtitle,
+                                             description,
+                                             short_description,
+                                             address_line_1,
+                                             address_line_2,
+                                             town,
+                                             county,
+                                             postcode)
+        ');
     }
 
     /**

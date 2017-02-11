@@ -5,7 +5,7 @@
     @foreach ($featuredProperties as $featuredProperty)
     <div class="row feature-property">
         <div class="col-md-3">
-            <img src="{{ asset('img/property-images/' . $featuredProperty->property->propertyImage[0]->image_filename) }}" class="list-propertyimage" alt="house" />
+            <img src="{{ asset('img/property-images/' . $featuredProperty->property->propertyImage->first()->image_filename) }}" class="list-propertyimage" alt="house" />
         </div>
         <div class="col-md-9">
             <h4>{{ $featuredProperty->property->title }}</h4>

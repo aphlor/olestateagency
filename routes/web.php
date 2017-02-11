@@ -14,5 +14,10 @@ Route::get('/', 'HomeController@index')
 Route::match(['get', 'post'], '/properties', 'PropertyListController@index')
     ->name('properties');
 
+// View the requested property
+Route::get('/property/{id}', 'PropertyController@index')
+    ->name('property')
+    ->where('id', '[0-9]+');
+
 // Laravel default authentication layer controllers
 Auth::routes();

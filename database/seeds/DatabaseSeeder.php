@@ -116,15 +116,26 @@ class DatabaseSeeder extends Seeder
             'display_order' => 0,
         ]);
 
-        PropertyImage::create([
-            'property_id' => (
-                Property::where('title', 'Victorian townhouse')
-                    ->get()
-            )[0]->id,
-            'display_order' => 0,
-            'image_filename' => 'old-house-1194752.jpg',
-            'description' => 'House image',
-        ]);
+        $order = 0;
+        $images = [
+            'old-house-1194752.jpg',
+            'designer-lounge-1-1516668.jpg',
+            'hotel-bathroom-1213410.jpg',
+            'interior-1554474.jpg',
+            'kitchen-1256737.jpg',
+            'paradise-1526185.jpg',
+        ];
+        foreach ($images as $image) {
+            PropertyImage::create([
+                'property_id' => (
+                    Property::where('title', 'Victorian townhouse')
+                        ->get()
+                )[0]->id,
+                'display_order' => $order++,
+                'image_filename' => $image,
+                'description' => $image,
+            ]);
+        }
 
         Property::create([
             'title' => 'Five bedroom mill conversion',
