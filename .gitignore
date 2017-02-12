@@ -2,6 +2,9 @@
 /.vagrant
 /*.log
 
+# composer lock file
+/composer.lock
+
 # laravel ignores
 /node_modules
 /public/storage
