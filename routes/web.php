@@ -10,6 +10,10 @@
 Route::get('/', 'HomeController@index')
     ->name('home');
 
+// User management
+Route::get('/admin/user', 'UserManagerController@index')
+    ->name('usermanager');
+
 // List of available properties (permit POST verb for search purposes)
 Route::match(['get', 'post'], '/properties', 'PropertyListController@index')
     ->name('properties');

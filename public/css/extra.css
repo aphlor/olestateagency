@@ -7,9 +7,16 @@ img.list-imageicon {
     padding-right: 1%;
 }
 
+a.property-link {
+    color: black;
+}
+
 div.list-property {
     padding-top: 2em;
     border-bottom: 1px solid lightgrey;
+}
+
+div.chat-property {
 }
 
 div.list-image-area {
@@ -24,8 +31,8 @@ h4.list-price {
     color: red;
 }
 
-span.twopspacer {
-}
+/*span.twopspacer {
+}*/
 
 footer {
     background-color: #220022;
