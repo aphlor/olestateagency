@@ -25,6 +25,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // This guard checks whether staff functions can be performed
+        Gate::define('can-manage-accounts', function ($user) {
+            return $user->role->manage_accounts ? true : false;
+        });
+
+        // This guard checks whether a user can manage properties for sale
+        Gate::define('can-manage-properties', function ($user) {
+            return $user->role->manage_properties ? true : false;
+        });
     }
 }

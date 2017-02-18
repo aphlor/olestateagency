@@ -14,6 +14,11 @@ Route::get('/', 'HomeController@index')
 Route::match(['get', 'post'], '/properties', 'PropertyListController@index')
     ->name('properties');
 
+// Chat facility
+Route::get('/contact/chat/{subject}/{key?}', 'ChatController@index')
+    ->where('subject', '(property|other)')
+    ->name('chat');
+
 // View the requested property
 Route::get('/property/{id}', 'PropertyController@index')
     ->name('property')
