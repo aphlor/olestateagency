@@ -3,7 +3,7 @@
     <h3>Featured properties:</h3>
 
     @foreach ($featuredProperties as $featuredProperty)
-    <div class="row feature-property">
+    <a href="/property/{{ $featuredProperty->property->id }}" class="property-link"><div class="row feature-property">
         <div class="col-md-3">
             <img src="{{ asset('img/property-images/' . $featuredProperty->property->propertyImage->first()->image_filename) }}" class="list-propertyimage" alt="house" />
         </div>
@@ -15,7 +15,7 @@
 
             <p><h4 class="list-price">{{ $featuredProperty->property->priceFormat->display_text }}: &pound;{{ number_format($featuredProperty->property->price) }}</h4></p>
         </div>
-    </div>
+    </div></a>
     @endforeach
 </div>
 @endif

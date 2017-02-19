@@ -8,7 +8,7 @@
                 <div class="panel-heading">This is the home page</div>
 
                 <div class="panel-body">
-                    Yoy might want to go to the <a href="/properties">properties</a> currently for sale.
+                    You might want to go to the <a href="/properties">properties</a> currently for sale.
                 </div>
             </div>
         </div>
