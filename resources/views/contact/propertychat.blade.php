@@ -7,7 +7,6 @@
         <div class="panel-body">
             @if (isset($property))
                 @include('property.listing')
-            @else
             @endif
         </div>
     </div>
