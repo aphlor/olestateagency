@@ -28,5 +28,23 @@ Route::get('/property/{id}', 'PropertyController@index')
     ->name('property')
     ->where('id', '[0-9]+');
 
+// View page from content management suite
+Route::get('/content/view/{page}', 'ContentController@view')
+    ->name('viewcontent');
+
+// Create/edit content page
+Route::match(['get', 'post'], '/content/create/{pageId?}', 'ContentController@index')
+    ->where('pageId', '[0-9]+')
+    ->name('createcontent');
+
+// List content pages
+Route::match(['get', 'post'], '/content/list', 'ContentController@list')
+    ->where('pageId', '[0-9]+')
+    ->name('listcontent');
+
+// View content pages
+Route::get('/content/view/{page}', 'ContentController@render')
+    ->name('viewcontent');
+
 // Laravel default authentication layer controllers
 Auth::routes();
