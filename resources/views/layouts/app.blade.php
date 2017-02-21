@@ -13,6 +13,7 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/extra.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/simplemde.min.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         <script>
@@ -20,6 +21,8 @@
                 'csrfToken' => csrf_token(),
             ]) !!};
         </script>
+
+        <script src="{{ asset('js/app.js') }}"></script>
     </head>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -89,8 +92,5 @@
                 </p>
             </div>
         </footer>
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
