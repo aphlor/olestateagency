@@ -23,6 +23,10 @@ Route::get('/contact/chat/{subject}/{key?}', 'ChatController@index')
     ->where('subject', '(property|other)')
     ->name('chat');
 
+// Message facility
+Route::get('/contact/message/{propertyId?}', 'MessageController@index')
+    ->name('message');
+
 // View the requested property
 Route::get('/property/{id}', 'PropertyController@index')
     ->name('property')

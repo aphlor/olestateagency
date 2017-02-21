@@ -1,10 +1,10 @@
 <!-- property listing -->
-@if (Request::route()->getName() != 'chat')
+@if (!preg_match('/^(chat|message)$/', Request::route()->getName()))
 <a href="/property/{{ $property->id }}" class="property-link">
 @endif
     <div class="row">
         <div
-        @if (Request::route()->getName() == 'chat')
+        @if (preg_match('/^(chat|message)$/', Request::route()->getName()))
              class="chat-property"
         @else
              class="list-property"
@@ -23,6 +23,6 @@
             </div>
         </div>
     </div>
-@if (Request::route()->getName() != 'chat')
+@if (!preg_match('/^(chat|message)$/', Request::route()->getName()))
 </a>
 @endif
