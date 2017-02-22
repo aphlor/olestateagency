@@ -7,11 +7,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Content management</div>
                 <div class="panel-body">
-                    <p>Manage your content pages.</p>
+                    <p>Manage your content pages. Alternatively, <a href="/content/create">create a new page</a>.</p>
 
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="user-filter" placeholder="Enter part of a user email address here to filter" autofocus />
+                            <input type="text" class="form-control" id="user-filter" placeholder="Enter part of a page title to filter the page list" autofocus />
                             <span class="input-group-btn">
                                 <button class="btn btn-success">Filter</button>
                             </span>
@@ -37,7 +37,8 @@
                                 <td>
                                     <div class="form-group">
                                         <a href="/content/view/{{ $page->path }}" class="btn btn-default">View</a>
-                                        <button class="btn btn-info">Delete page</button>
+                                        <a href="/content/create/{{ $page->id }}" class="btn btn-info">Edit</a>
+                                        <button class="btn btn-danger">Delete page</button>
                                     </div>
                                 </td>
                             </tr>
