@@ -20,7 +20,7 @@ class ContentController extends Controller
     public function __construct()
     {
         // make authentication mandatory?
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
