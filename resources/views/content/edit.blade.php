@@ -21,8 +21,9 @@
                     <hr />
 
                     <div class="form-group">
+                        <label for="pagePath">Address path section (prefixed with '/content/view/' automatically)</label>
                         <div class="input-group">
-                            <input type="text" name="pagePath" value="{{ $pagePath }}" class="form-control" placeholder="Enter simple path of page to save here (it will be prefixed with '/content/view/'), e.g. removals_information" />
+                            <input type="text" id="pagePath" name="pagePath" value="{{ $pagePath }}" class="form-control" placeholder="e.g. removals_information" />
                             <span class="input-group-btn">
                                 <input type="submit" class="btn btn-success" name="save" value="{{ isset($pageId) && !empty($pageId) ? 'Update' : 'Save' }}" />
                             </span>
