@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">User management</div>
                 <div class="panel-body">
@@ -54,7 +54,7 @@
                                 <td>
                                     <div class="form-group">
                                         <button class="btn btn-default">Send password reset</button>
-                                        <button class="btn btn-warning">{{ empty($user->deleted) ? 'Deactivate' : 'Activate' }}</button>
+                                        <button class="btn btn-danger">{{ empty($user->deleted) ? 'Deactivate' : 'Activate' }}</button>
                                     </div>
                                 </td>
                             </tr>
