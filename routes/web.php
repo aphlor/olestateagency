@@ -14,10 +14,6 @@ Route::get('/', 'HomeController@index')
 Route::get('/admin/user', 'UserManagerController@index')
     ->name('usermanager');
 
-// List of available properties (permit POST verb for search purposes)
-Route::match(['get', 'post'], '/properties', 'PropertyListController@index')
-    ->name('properties');
-
 // Chat facility
 Route::get('/contact/chat/{subject}/{key?}', 'ChatController@index')
     ->where('subject', '(property|other)')
@@ -27,10 +23,23 @@ Route::get('/contact/chat/{subject}/{key?}', 'ChatController@index')
 Route::get('/contact/message/{propertyId?}', 'MessageController@index')
     ->name('message');
 
+// List of available properties (permit POST verb for search purposes)
+Route::match(['get', 'post'], '/properties', 'PropertyListController@index')
+    ->name('properties');
+
 // View the requested property
 Route::get('/property/{id}', 'PropertyController@index')
     ->name('property')
     ->where('id', '[0-9]+');
+
+// Add a new property to the system
+Route::get('/property/create', 'PropertyController@create')
+    ->name('addproperty');
+
+// Edit a property
+Route::get('/property/edit/{propertyId?}', 'PropertyController@edit')
+    ->where('propertyId', '[0-9]+')
+    ->name('addproperty');
 
 // View page from content management suite
 Route::get('/content/view/{page}', 'ContentController@view')

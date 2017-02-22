@@ -52,16 +52,33 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/properties">Find a property</a></li>
+                        <li><a href="/contact/message">Send us a message</a></li>
+                        <li><a href="/contact/chat/other">Online chat</a></li>
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    User: {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li class="dropdown-header">My account</li>
+                                    <li><a href="/property/saved">My saved properties</a></li>
+                                    <li><a href="/property/searches">My saved searches</a></li>
+                                    @if (Gate::allows('can-manage-properties'))
+                                        <li class="dropdown-header">Staff functions</li>
+                                        <li><a href="/property/create">Add a new property</a></li>
+                                        <li><a href="/content/list">Manage content pages</a></li>
+                                    @endif
+                                    @if (Gate::allows('can-manage-accounts'))
+                                        <li class="dropdown-header">Superuser functions</li>
+                                        <li><a href="/admin/user">Manage user accounts</a></li>
+                                    @endif
+                                    <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
