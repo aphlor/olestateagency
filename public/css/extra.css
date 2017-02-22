@@ -13,7 +13,7 @@ a.property-link {
 
 div.list-property {
     padding-top: 2em;
-    border-bottom: 1px solid lightgrey;
+    /*border-bottom: 1px solid lightgrey;*/
 }
 
 div.chat-property {
@@ -30,9 +30,6 @@ div.view-buttons div a.btn {
 h4.list-price {
     color: red;
 }
-
-/*span.twopspacer {
-}*/
 
 footer {
     background-color: #220022;
