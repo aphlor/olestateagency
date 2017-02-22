@@ -104,7 +104,7 @@
             <div class="container">
                 <p>Joe's estate agency</p>
                 <p>
-                    Built by <a href="http://aphlor.org/">Rob Andrews</a> using <a href="http://laravel.com/">Laravel</a> and
+                    Built with &quot;online estate agency&quot; software, using <a href="http://laravel.com/">Laravel</a> and
                     <a href="http://getbootstrap.com/">Bootstrap</a>.
                 </p>
             </div>
