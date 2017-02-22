@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         User::create([
             'name' => 'Testy McTestface',
-            'email' => 'rob+superuser@aphlor.org',
+            'email' => 'test+superuser@example.ex',
             'password' => bcrypt('password123'),
             'role_id' => (
                 Role::where('role_name', 'Superuser')
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'Staff User',
-            'email' => 'rob+staff@aphlor.org',
+            'email' => 'test+staff@example.ex',
             'password' => bcrypt('password123'),
             'role_id' => (
                 Role::where('role_name', 'Staff agent')
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'Normal User',
-            'email' => 'rob+normal@aphlor.org',
+            'email' => 'test+normal@example.ex',
             'password' => bcrypt('password123'),
             'role_id' => (
                 Role::where('role_name', 'Normal user')
@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'Deleted User',
-            'email' => 'rob+deleted@aphlor.org',
+            'email' => 'test+deleted@example.ex',
             'password' => bcrypt('password123'),
             'role_id' => (
                 Role::where('role_name', 'Normal user')
@@ -101,7 +101,7 @@ class DatabaseSeeder extends Seeder
             'county' => 'Bath & North East Somerset',
             'postcode' => 'BA2 6AH',
             'vendor_user_id' => (
-                User::where('email', 'rob+normal@aphlor.org')
+                User::where('email', 'test+normal@example.ex')
                     ->get()
             )[0]->id,
             'price' => 4500000,
@@ -164,7 +164,7 @@ class DatabaseSeeder extends Seeder
             'county' => 'Somerset',
             'postcode' => 'TA13 5XT',
             'vendor_user_id' => (
-                User::where('email', 'rob+normal@aphlor.org')
+                User::where('email', 'test+normal@example.ex')
                     ->get()
             )[0]->id,
             'price' => 450000,
@@ -208,7 +208,7 @@ class DatabaseSeeder extends Seeder
             'county' => 'Wiltshire',
             'postcode' => 'BA14 7UJ',
             'vendor_user_id' => (
-                User::where('email', 'rob+normal@aphlor.org')
+                User::where('email', 'test+normal@example.ex')
                     ->get()
             )[0]->id,
             'price' => 450,
