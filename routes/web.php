@@ -19,6 +19,9 @@ Route::get('/contact/chat/{subject}/{key?}', 'ChatController@index')
     ->where('subject', '(property|other)')
     ->name('chat');
 
+// Chat json setup service
+Route::get('/contact/chat/setup', 'ChatController@setup');
+
 // Message facility
 Route::get('/contact/message/{propertyId?}', 'MessageController@index')
     ->name('message');
