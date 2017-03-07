@@ -22,6 +22,12 @@ Route::get('/contact/chat/{subject}/{key?}', 'ChatController@index')
 // Chat json setup service
 Route::get('/contact/chat/setup', 'ChatController@setup');
 
+// Chat json message send service
+Route::match(['get', 'post'], '/contact/chat/send', 'ChatController@send');
+
+// Chat json message poll service
+Route::post('/contact/chat/poll', 'ChatController@poll');
+
 // Message facility
 Route::get('/contact/message/{propertyId?}', 'MessageController@index')
     ->name('message');

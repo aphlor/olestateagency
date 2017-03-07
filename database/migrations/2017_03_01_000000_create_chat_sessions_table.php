@@ -21,10 +21,10 @@ class CreateChatSessionsTable extends Migration
             $table->foreign('initiating_user_id')
                   ->references('id')
                   ->on('users');
-             $table->integer('accepting_user_id')
+            $table->integer('accepting_user_id')
                   ->unsigned()
                   ->nullable();
-             $table->foreign('accepting_user_id')
+            $table->foreign('accepting_user_id')
                   ->references('id')
                   ->on('users');
             $table->text('subject');

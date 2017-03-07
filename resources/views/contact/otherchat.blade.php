@@ -8,6 +8,7 @@
             @if (isset($property))
                 @include('property.listing')
             @else
+                Error fetching property data
             @endif
         </div>
     </div>
@@ -21,41 +22,17 @@
         </div>
     </div>
 
-    <!-- message from -->
-    <div class="panel panel-success">
-        <div class="panel-heading">Joe Bloggs</div>
-        <div class="panel-body">
-            Hi, how are you today? My name is Joe, how can I help?
-        </div>
+    <div id="chat-area">
     </div>
 
-    <!-- message to -->
-    <div class="panel panel-info">
-        <div class="panel-heading">You</div>
-        <div class="panel-body">
-            Hello, I'm looking for studio apartments in the area but see none listed;
-            do you see many appearing for sale? If not, are there any small apartments
-            that fit a low budget?
-        </div>
-    </div>
-
-    <!-- message from -->
-    <div class="panel panel-success">
-        <div class="panel-heading">Joe Bloggs</div>
-        <div class="panel-body">
-            I see. I'm sorry, but we don't see many studio properties, however we have
-            two one-bedroom flats listed on a newly built estate in the east of the
-            town within a short distance of the town centre and train station. Would
-            something like this suit your requirements?
-        </div>
-    </div>
-
-    <div class="form-group">
+    <div class="form-group" id="chat-entry">
         <div class="input-group">
-            <input type="text" class="form-control" id="chat-message" placeholder="Type your message here and press &lt;return&gt; to send..." autofocus />
+            <input type="text" class="form-control" id="chat-message" placeholder="Type your message here and press &lt;return&gt; to send..." autofocus disabled />
             <span class="input-group-btn">
-                <button class="btn btn-success">Send</button>
+                <button id="msg-send" class="btn btn-success">Send</button>
             </span>
         </div>
     </div>
 </div></div>
+
+<script src="/js/chat.js"></script>

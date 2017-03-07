@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\User;
 use App\Models\Property;
 use App\Models\ChatSession;
+use App\Models\ChatMessage;
 
 class ChatController extends Controller
 {
@@ -87,5 +89,111 @@ class ChatController extends Controller
         $parameters['chat_session_id'] = $chatSession->id;
 
         return response()->json($parameters);
+    }
+
+    private static function initiator(int $chatSessionId, User $user = null)
+    {
+        $chatSession = ChatSession::find($chatSessionId);
+
+        if (($user !== null) && ($chatSession->initiating_user_id == $user->id)) {
+            // we're logged in and the initiating user
+            return true;
+        }
+
+        if (($user === null) && !isset($chatSession->initiating_user_id)) {
+            // we're not logged in and the chat session is anonymous (i.e. we're the initiator)
+            return true;
+        }
+
+        // we didn't initiate the chat session
+        return false;
+    }
+
+    /**
+     * Send a message to a conversation.
+     *
+     * @param Request   $request    The request object
+     * @return \Illuminate\Http\Response
+     */
+    public function send(Request $request)
+    {
+        $message = ChatMessage::create([
+            'chat_session_id' => $request->input('chatSessionId'),
+            'message_text' => $request->input('message'),
+            'from_initiator' => Auth::check() ?
+                self::initiator($request->input('chatSessionId'), Auth::user()) :
+                self::initiator($request->input('chatSessionId')),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'messageId' => $message->id,
+        ]);
+    }
+
+    /**
+     * Poll conversation for updates.
+     *
+     * @param Request   $request    The request object
+     * @return \Illuminate\Http\Response
+     */
+    public function poll(Request $request)
+    {
+        $events = ChatMessage::where('chat_session_id', $request->input('chatSessionId'))
+            ->where('id', '>', $request->input('checkpoint', 0))
+            ->get();
+
+        $chat = ChatSession::find($request->input('chatSessionId'));
+
+        $active = false;
+        if (isset($chat->accepting_user_id)
+            && ($chat->accepting_user_id !== null)
+            && ($chat->completed == 0)
+        ) {
+            $active = true;
+        }
+
+        $strippedEvents = [];
+        foreach ($events as $event) {
+            $strippedEvents[] = [
+                'id' => $event->id,
+                'message_text' => $event->message_text,
+                'from_initiator' => $event->from_initiator,
+            ];
+        }
+
+        return response()->json([
+            'success' => true,
+            'active' => $active,
+            'participant_id' => $chat->accepting_user_id,
+            'participant_name' => $active ? $chat->accepting_user->name : '',
+            'events' => $strippedEvents,
+        ]);
+    }
+
+    /**
+     * End a conversation.
+     *
+     * @param Request   $request    The request object
+     * @return \Illuminate\Http\Response
+     */
+    public function end(Request $request)
+    {
+        $message = ChatMessage::create([
+            'chat_session_id' => $request->input('chatSessionId'),
+            'message_text' => $request->input('message'),
+            'from_initiator' => Auth::check() ?
+                self::initiator($request->input('chatSessionId'), Auth::user()) :
+                self::initiator($request->input('chatSessionId')),
+        ]);
+
+        $session = ChatSession::find($request->input('chatSessionId'));
+        $session->completed = 1;
+        $session->save();
+
+        return response()->json([
+            'success' => true,
+            'messageId' => $message->id,
+        ]);
     }
 }
