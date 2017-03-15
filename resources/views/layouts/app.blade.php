@@ -73,6 +73,7 @@
                                         <li class="dropdown-header">Staff functions</li>
                                         <li><a href="/property/create">Add a new property</a></li>
                                         <li><a href="/content/list">Manage content pages</a></li>
+                                        <li><a href="/contact/chat/admin">Handle chat conversations</a></li>
                                     @endif
                                     @if (Gate::allows('can-manage-accounts'))
                                         <li class="dropdown-header">Superuser functions</li>

@@ -28,6 +28,17 @@ Route::match(['get', 'post'], '/contact/chat/send', 'ChatController@send');
 // Chat json message poll service
 Route::post('/contact/chat/poll', 'ChatController@poll');
 
+// Chat admin view
+Route::get('/contact/chat/admin', 'ChatController@adminList');
+
+// Chat admin join
+Route::get('/contact/chat/join/{conversationId}', 'ChatController@join')
+    ->where('conversationId', '[0-9]+');
+
+// Chat admin join
+Route::get('/contact/chat/end/{conversationId}', 'ChatController@end')
+    ->where('conversationId', '[0-9]+');
+
 // Message facility
 Route::get('/contact/message/{propertyId?}', 'MessageController@index')
     ->name('message');

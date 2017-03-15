@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
@@ -44,6 +45,42 @@ class ChatController extends Controller
 
         // until we decide on a dashboard layout, go straight to properties
         return view('contact.chat', $params);
+    }
+
+    /**
+     * Handle the admin list of chat sessions
+     *
+     * @param Request   $request    The request object
+     * @return \Illuminate\Http\Response
+     */
+    public function adminList(Request $request)
+    {
+        if (Gate::denies('can-manage-properties')) {
+            abort(403, 'Unauthorized action');
+        }
+
+        $pendingSessions = ChatSession::where('completed', '0')
+            ->orderBy('created_at', 'asc')
+            ->get();
+        $returnPendingSessions = [];
+
+        foreach ($pendingSessions as $pendingSession) {
+            $returnPendingSessions[] = [
+                'id' => $pendingSession->id,
+                'subject' => $pendingSession->subject,
+                'user' => isset($pendingSession->initiating_user_id)
+                    ? $pendingSession->initiating_user
+                    : 'Guest user',
+                'time' => $pendingSession->created_at,
+                'adminUser' => $pendingSession->accepting_user_id
+                    ? $pendingSession->accepting_user
+                    : null,
+            ];
+        }
+
+        return view('contact.admin', [
+            'sessions' => $returnPendingSessions
+        ]);
     }
 
     /**

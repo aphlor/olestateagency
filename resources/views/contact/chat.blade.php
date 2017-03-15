@@ -7,11 +7,7 @@
     <div class="row">
         <!-- left main chat area -->
         <div class="col-md-9">
-            @if ($subject == 'property')
-                @include('contact.propertychat')
-            @else
-                @include('contact.otherchat')
-            @endif
+            @include('contact.otherchat')
         </div>
 
         <!-- right side panel -->
@@ -21,13 +17,13 @@
                 <div class="panel-heading">
                     Talk to us
                 </div>
-                <div class="panel-body">
-                    <p>Chat session opened at {{ (new DateTime)->format('d/m/Y H:i') }}</p>
-
-                    <p>You are connected to staff member <strong>Joe Bloggs</strong></p>
+                <div class="panel-body" id="chat-meta">
+                    <p>Waiting for connection</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="/js/chat.js"></script>
 @endsection
