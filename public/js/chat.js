@@ -46,6 +46,7 @@ var pollForMessages = function () {
 
             if (!activatedEvents) {
                 activateMessageTriggers()
+                $("#chat-meta").html("You are connected to <strong>" + remoteUser + "</strong>")
                 activatedEvents = true
             }
         } else {
