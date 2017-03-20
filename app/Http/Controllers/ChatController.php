@@ -211,26 +211,28 @@ class ChatController extends Controller
     /**
      * End a conversation.
      *
-     * @param Request   $request    The request object
+     * @param Request   $request        The request object
+     * @param int       $conversationId ID of the conversation to end
      * @return \Illuminate\Http\Response
      */
-    public function end(Request $request)
+    public function end(Request $request, int $conversationId)
     {
+        if (Gate::denies('can-manage-properties')) {
+            abort(403, 'Attempted an admin action on a conversation without privilege');
+        }
+
         $message = ChatMessage::create([
-            'chat_session_id' => $request->input('chatSessionId'),
-            'message_text' => $request->input('message'),
+            'chat_session_id' => $conversationId,
+            'message_text' => 'This conversation has been closed',
             'from_initiator' => Auth::check() ?
-                self::initiator($request->input('chatSessionId'), Auth::user()) :
-                self::initiator($request->input('chatSessionId')),
+                self::initiator($conversationId, Auth::user()) :
+                self::initiator($conversationId),
         ]);
 
-        $session = ChatSession::find($request->input('chatSessionId'));
+        $session = ChatSession::find($conversationId);
         $session->completed = 1;
         $session->save();
 
-        return response()->json([
-            'success' => true,
-            'messageId' => $message->id,
-        ]);
+        return redirect()->route('chatadmin');
     }
 }

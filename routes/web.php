@@ -29,7 +29,8 @@ Route::match(['get', 'post'], '/contact/chat/send', 'ChatController@send');
 Route::post('/contact/chat/poll', 'ChatController@poll');
 
 // Chat admin view
-Route::get('/contact/chat/admin', 'ChatController@adminList');
+Route::get('/contact/chat/admin', 'ChatController@adminList')
+    ->name('chatadmin');
 
 // Chat admin join
 Route::get('/contact/chat/join/{conversationId}', 'ChatController@join')

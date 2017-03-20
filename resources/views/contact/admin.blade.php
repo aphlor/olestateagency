@@ -24,6 +24,11 @@
                     </thead>
 
                     <tbody>
+                        @if (count($sessions) === 0)
+                            <tr>
+                                <td colspan="6"><em>No conversations are active or pending</em></td>
+                            </tr>
+                        @endif
                         @foreach ($sessions as $session)
                             <tr>
                                 <td>{{ ucfirst($session['subject']) }}</td>
