@@ -15,12 +15,14 @@
     @endif
 
     <!-- waiting -->
+    @if ($admin === false)
     <div class="panel panel-warning">
         <div class="panel-heading">System</div>
         <div class="panel-body">
             Waiting for a staff member to become available
         </div>
     </div>
+    @endif
 
     <div id="chat-area">
     </div>

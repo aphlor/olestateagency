@@ -7,6 +7,15 @@ var chatSessionId
   , chatActive = false
   , activatedEvents = false
 
+// determine which side of the chat we are in
+var admin = false
+if ((typeof adminMode === 'undefined') || !adminMode) {
+    admin = false
+}
+if ((typeof adminMode !== 'undefined') && adminMode) {
+    admin = true
+}
+
 var chatTemplate = '\
 <div class="panel panel-##MSGINOUT##" id="msg-##MSGID##">\
     <div class="panel-heading">##MSGID-HEAD##</div>\
@@ -37,7 +46,9 @@ var pollForMessages = function () {
         }
     }).done(function (data, status, xhr) {
         pollBlock = false
-        remoteUser = data.participant_name
+        if (!admin) {
+            remoteUser = data.participant_name
+        }
 
         // handle enabling/disabling the chat session
         if (data.active) {
@@ -65,7 +76,12 @@ var pollForMessages = function () {
             var chatEntry = chatTemplate
             chatEntry = chatEntry.replace(/##MSGINOUT##/, event.from_initiator ? 'info' : 'success')
             chatEntry = chatEntry.replace(/##MSGID##/, event.id)
-            chatEntry = chatEntry.replace(/##MSGID-HEAD##/, event.from_initiator ? htmlEncode(userData.display_name) : htmlEncode(remoteUser))
+
+            if (!admin) {
+                chatEntry = chatEntry.replace(/##MSGID-HEAD##/, event.from_initiator ? htmlEncode(userData.display_name) : htmlEncode(remoteUser))
+            } else {
+                chatEntry = chatEntry.replace(/##MSGID-HEAD##/, event.from_initiator ? htmlEncode(remoteUser) : htmlEncode(userData.display_name))
+            }
             chatEntry = chatEntry.replace(/##MSGID-BODY##/, htmlEncode(event.message_text))
 
             // inject the chatEntry to the page
@@ -123,6 +139,18 @@ var activateMessageTriggers = function () {
 }
 
 $(document).ready(function () {
+    if (admin) {
+        // we're in admin mode
+        userData = chatMetadata.user
+        chatSessionId = chatMetadata.chatSessionId
+        remoteUser = chatMetadata.remoteUser
+
+        // poll and setup auto polling
+        pollForMessages()
+
+        return
+    }
+
     // initiate a chat session
     $.ajax({
         url: '/contact/chat/setup',

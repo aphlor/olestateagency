@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Chat to a member of staff</h1>
+    <h1>Join a conversation</h1>
 
     <div class="row">
         <!-- left main chat area -->
@@ -15,15 +15,30 @@
             <!-- staff info here -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Talk to us
+                    User chat
                 </div>
                 <div class="panel-body" id="chat-meta">
                     <p>Waiting for connection</p>
+                </div>
+                <div class="panel-body">
+                    <a href="/contact/chat/end/{{ $chatSessionId }}" class="btn btn-danger">End</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+// Globals from admin interface
+var adminMode = true
+  , chatMetadata = {
+        chatSessionId: {{ $chatSessionId }},
+        remoteUser: '{{ $remoteUserName }}',
+        user: {
+            mode: '{{ $user['mode'] }}',
+            display_name: '{{ $user['display_name'] }}'
+        }
+    }
+</script>
 <script src="/js/chat.js"></script>
 @endsection

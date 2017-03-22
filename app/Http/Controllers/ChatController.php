@@ -37,7 +37,10 @@ class ChatController extends Controller
      */
     public function index(Request $request, string $subject, int $key = 0)
     {
-        $params = ['subject' => $subject];
+        $params = [
+            'admin' => false,
+            'subject' => $subject,
+        ];
 
         if (($subject === 'property') && isset($key)) {
             $params['property'] = Property::find($key);
@@ -234,5 +237,34 @@ class ChatController extends Controller
         $session->save();
 
         return redirect()->route('chatadmin');
+    }
+
+    /**
+     * Join a conversation
+     *
+     * @param Request   $request        The request object
+     * @param int       $conversationId ID of conversation to join
+     * @return \Illuminate\Http\Response
+     */
+    public function join(Request $request, int $conversationId)
+    {
+        if (Gate::denies('can-manage-properties')) {
+            abort(403, 'Attempted to join a conversation without privilege');
+        }
+
+        $session = ChatSession::find($conversationId);
+        $session->accepting_user_id = Auth::user()->id;
+        $session->save();
+
+        return view('contact.joinchat', [
+            'admin' => true,
+            'subject' => 'other',
+            'chatSessionId' => $conversationId,
+            'remoteUserName' => isset($session->initiating_user_id) ? $session->initiating_user->name : 'Guest User',
+            'user' => [
+                'mode' => 'authorised',
+                'display_name' => Auth::user()->name,
+            ]
+        ]);
     }
 }
