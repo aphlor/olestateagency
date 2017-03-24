@@ -40,6 +40,10 @@ Route::get('/contact/chat/join/{conversationId}', 'ChatController@join')
 Route::get('/contact/chat/end/{conversationId}', 'ChatController@end')
     ->where('conversationId', '[0-9]+');
 
+// Chat user departure
+Route::get('/contact/chat/leave/{conversationId}', 'ChatController@leave')
+    ->where('conversationId', '[0-9]+');
+
 // Message facility
 Route::get('/contact/message/{propertyId?}', 'MessageController@index')
     ->name('message');

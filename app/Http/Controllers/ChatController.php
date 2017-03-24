@@ -240,6 +240,30 @@ class ChatController extends Controller
     }
 
     /**
+     * User leaves a conversation.
+     *
+     * @param Request   $request        The request object
+     * @param int       $conversationId ID of the conversation to end
+     * @return \Illuminate\Http\Response
+     */
+    public function leave(Request $request, int $conversationId)
+    {
+        $message = ChatMessage::create([
+            'chat_session_id' => $conversationId,
+            'message_text' => 'User has left the conversation',
+            'from_initiator' => Auth::check() ?
+                self::initiator($conversationId, Auth::user()) :
+                self::initiator($conversationId),
+        ]);
+
+        $session = ChatSession::find($conversationId);
+        $session->completed = 1;
+        $session->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    /**
      * Join a conversation
      *
      * @param Request   $request        The request object

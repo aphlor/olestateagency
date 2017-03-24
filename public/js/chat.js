@@ -151,6 +151,21 @@ $(document).ready(function () {
         return
     }
 
+    // setup a facility for users to leave a conversation
+    if (!admin) {
+        window.onbeforeunload = function () {
+            if ((typeof chatSessionId !== 'undefined') && chatSessionId) {
+                // fire this off before the user flees; we don't much care about the response
+                $.ajax({
+                    url: '/contact/chat/leave/' + chatSessionId,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
+            }
+        }
+    }
+
     // initiate a chat session
     $.ajax({
         url: '/contact/chat/setup',
