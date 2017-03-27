@@ -48,6 +48,9 @@ Route::get('/contact/chat/leave/{conversationId}', 'ChatController@leave')
 Route::get('/contact/message/{propertyId?}', 'MessageController@index')
     ->name('message');
 
+// Send a message via web form
+Route::post('/contact/sendmessage', 'MessageController@send');
+
 // List of available properties (permit POST verb for search purposes)
 Route::match(['get', 'post'], '/properties', 'PropertyListController@index')
     ->name('properties');

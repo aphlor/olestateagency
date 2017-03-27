@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
+use App\Mail\Contact;
 use App\Models\Property;
 
 class MessageController extends Controller
@@ -28,17 +30,37 @@ class MessageController extends Controller
      */
     public function index(int $propertyId = 0)
     {
-        $params = [];
+        $params = [
+            'user' => Auth::check() ? Auth::user() : null
+        ];
 
         if ($propertyId != 0) {
             $params['property'] = Property::find($propertyId);
         }
 
-        if (Auth::check()) {
-            $params['user'] = Auth::user();
-        }
-
         // until we decide on a dashboard layout, go straight to properties
         return view('contact.message', $params);
+    }
+
+    /**
+     * Send a contact message
+     *
+     * @param Request   $request    The request object
+     * @return \Illuminate\Http\Response
+     */
+    public function send(Request $request)
+    {
+        if (empty(env('MAIL_WEBSITE_RECIPIENT'))) {
+            abort(500, 'Missing configuration in environment: MAIL_WEBSITE_RECIPIENT');
+        }
+
+        Mail::to(env('MAIL_WEBSITE_RECIPIENT'))
+            ->send(new Contact([
+                'senderName' => $request->input('name', '<empty>'),
+                'senderEmail' => $request->input('email', '<empty>'),
+                'body' => nl2br(htmlspecialchars($request->input('message', ''))),
+            ]));
+
+        return view('contact.sent');
     }
 }

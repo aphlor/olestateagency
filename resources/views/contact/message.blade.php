@@ -19,6 +19,8 @@
 
         <div class="form-group">
             <form method="post" action="/contact/sendmessage">
+                {{ csrf_field() }}
+
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" class="form-control" value="{{ isset($user) ? $user->name : '' }}" />
 
@@ -30,7 +32,7 @@
 
                 <hr />
 
-                <input type="submit" class="btn btn-default" value="Send" />
+                <input type="submit" class="btn btn-success" value="Send" />
             </form>
         </div>
     </div></div>
