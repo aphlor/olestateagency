@@ -46,7 +46,6 @@ class PropertyListController extends Controller
         $featuredProperties = new FeaturedProperty;
         $properties = new Property;
 
-
         $featuredProperties = $featuredProperties->all();
 
         // $featuredProperties = DB::table('featured_properties')
