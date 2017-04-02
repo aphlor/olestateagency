@@ -54,7 +54,7 @@ _crypto_key="base64:$(php -r 'print base64_encode(random_bytes(32));')"
 
 # generate the $ROOT/.env file from build/env.build
 sed "s#\#\#APP_KEY\#\##${_crypto_key}#g;
-     s/##APP_URL##/http:\/\/localhost/g;
+     s/##APP_URL##/http:\/\/olestateagency.local/g;
      s/##DB_WEB_HOST##/127.0.0.1/g;
      s/##DB_WEB_DATABASE##/olestateagency/g;
      s/##DB_WEB_USERNAME##/web_user/g;

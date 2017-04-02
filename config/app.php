@@ -177,6 +177,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Selenium testing provider
+         */
+        Modelizer\Selenium\SeleniumServiceProvider::class,
+
     ],
 
     /*
