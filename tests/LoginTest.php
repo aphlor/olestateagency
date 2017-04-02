@@ -8,7 +8,7 @@ use Modelizer\Selenium\SeleniumTestCase;
 class LoginTest extends SeleniumTestCase
 {
     /**
-     * A basic test example.
+     * Test the login form.
      *
      * @return void
      */
