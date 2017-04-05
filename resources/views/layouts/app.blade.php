@@ -68,7 +68,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="dropdown-header">My account</li>
                                     <li><a href="/property/saved">My saved properties</a></li>
-                                    <li><a href="/property/searches">My saved searches</a></li>
+                                    <li><a href="/properties/searches">My saved searches</a></li>
                                     @if (Gate::allows('can-manage-properties'))
                                         <li class="dropdown-header">Staff functions</li>
                                         <li><a href="/property/create">Add a new property</a></li>

@@ -60,6 +60,13 @@ Route::get('/property/{id}', 'PropertyController@index')
     ->name('property')
     ->where('id', '[0-9]+');
 
+// View the property search list
+Route::get('/properties/searches', 'PropertyListController@listSearches');
+
+// View the requested search
+Route::get('/properties/restore/{id}', 'PropertyListController@restore')
+    ->where('id', '[0-9]+');
+
 // Add a new property to the system
 Route::get('/property/create', 'PropertyController@create')
     ->name('addproperty');
@@ -68,6 +75,9 @@ Route::get('/property/create', 'PropertyController@create')
 Route::get('/property/edit/{propertyId?}', 'PropertyController@edit')
     ->where('propertyId', '[0-9]+')
     ->name('addproperty');
+
+// Save a search
+Route::post('/properties/savesearch', 'PropertyListController@saveSearch');
 
 // View page from content management suite
 Route::get('/content/view/{page}', 'ContentController@view')
