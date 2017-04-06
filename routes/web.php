@@ -89,6 +89,14 @@ Route::get('/property/edit/{propertyId?}', 'PropertyController@edit')
     ->where('propertyId', '[0-9]+')
     ->name('addproperty');
 
+// Save a property in a list for later reference
+Route::get('/property/save/{propertyId?}', 'PropertyController@save')
+    ->where('propertyId', '[0-9]+');
+
+// Remove a property from the saved property lsit
+Route::get('/property/forget/{propertyId?}', 'PropertyController@forget')
+    ->where('propertyId', '[0-9]+');
+
 // Content management and display suite -------------------------------------------------
 
 // View page from content management suite

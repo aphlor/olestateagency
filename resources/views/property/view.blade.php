@@ -10,14 +10,14 @@
             <div class="row"><img src="{{ asset('img/property-images/' . $property->propertyImage->first()->image_filename) }}" class="list-propertyimage" alt="house" /></div>
             <hr/>
             @foreach ($images as $imageRow)
-            <div class="row">
-                @foreach ($imageRow as $pos => $image)
-                    <img src="{{ asset('img/property-images/' . $image->image_filename) }}" class="list-imageicon" alt="house" />
-                    @if ($pos < 2)
-                        <span class="twopspacer"></span>
-                    @endif
-                @endforeach
-            </div>
+                <div class="row">
+                    @foreach ($imageRow as $pos => $image)
+                        <img src="{{ asset('img/property-images/' . $image->image_filename) }}" class="list-imageicon" alt="house" />
+                        @if ($pos < 2)
+                            <span class="twopspacer"></span>
+                        @endif
+                    @endforeach
+                </div>
             @endforeach
         </div>
         <div class="col-md-6">
@@ -30,9 +30,15 @@
             <div class="row">
                 <a href="/contact/mail/property/{{ $property->id }}" class="btn btn-default">Request a viewing</a>
             </div>
-            <div class="row">
-                <a href="/property/save/{{ $property->id }}" class="btn btn-default">Save to &quot;My properties&quot;</a>
-            </div>
+            @if (Auth::check())
+                <div class="row">
+                    @if ($isSaved)
+                        <a href="/property/forget/{{ $property->id }}" class="btn btn-danger">Remove from &quot;My properties&quot;</a>
+                    @else
+                        <a href="/property/save/{{ $property->id }}" class="btn btn-success">Save to &quot;My properties&quot;</a>
+                    @endif
+                </div>
+            @endif
             <div class="row">
                 <a href="/contact/chat/property/{{ $property->id }}" class="btn btn-default">Chat to an agent</a>
             </div>

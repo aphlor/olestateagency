@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use App\Models\Property;
 use App\Models\PropertyImage;
 use App\Models\PriceFormat;
+use App\Models\SavedProperty;
 
 class PropertyController extends Controller
 {
@@ -23,11 +25,22 @@ class PropertyController extends Controller
         $property = Property::find($id);
         $images = PropertyImage::where('property_id', $id)->get();
 
+        $isSaved = false;
+        if (Auth::check()) {
+            $savedProperty = SavedProperty::where('user_id', Auth::user()->id)
+                ->where('property_id', $id)
+                ->get();
+
+            if (count($savedProperty) > 0) {
+                $isSaved = true;
+            }
+        }
+
         $address = implode(
             ', ',
             array_map(
                 function ($i) {
-                    if (isset($i) && !empty($i)) {
+                    if (isset($i) && !empty(trim($i))) {
                         return $i;
                     }
                 },
@@ -58,7 +71,51 @@ class PropertyController extends Controller
             'property' => $property,
             'address' => $address,
             'images' => $imagesSplitByThree,
+            'isSaved' => $isSaved,
         ]);
+    }
+
+    /**
+     * Save the requested property to a list
+     *
+     * @param Request $request  The request object
+     * @param int     $id       Property ID to save
+     * @return \Illuminate\Http\Response
+     */
+    public function save(Request $request, int $id)
+    {
+        if (!Auth::check()) {
+            abort(403, 'Not logged in');
+        }
+
+        SavedProperty::create([
+            'user_id' => Auth::user()->id,
+            'property_id' => $id,
+        ]);
+
+        // run the view facility now we're saved
+        return $this->index($request, $id);
+    }
+
+    /**
+     * Remove the requested property from the save list
+     *
+     * @param Request $request  The request object
+     * @param int     $id       Property ID to save
+     * @return \Illuminate\Http\Response
+     */
+    public function forget(Request $request, int $id)
+    {
+        if (!Auth::check()) {
+            abort(403, 'Not logged in');
+        }
+
+        SavedProperty::where('user_id', Auth::user()->id)
+            ->where('property_id', $id)
+            ->delete();
+
+        // run the view facility now we're saved
+        return $this->index($request, $id);
     }
 
     /**
