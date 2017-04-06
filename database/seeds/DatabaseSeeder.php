@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
                 'of Bath. Parking is available by permits which can be obtained from the ' .
                 'council.</p>' .
                 '<p>This property has a new kitchen which has recently been fitted, consisting ' .
-                'of a high-end granite worktop and inbuild facilities and induction hob.</p>' .
+                'of a high-end granite worktop and inbuilt facilities and induction hob.</p>' .
                 '<p>Please contact our office to arrange a viewing.</p>',
             'short_description' => '<ul>' .
                 '    <li>Three floors</li>' .
