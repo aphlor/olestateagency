@@ -52,6 +52,7 @@ Route::get('/contact/chat/leave/{conversationId}', 'ChatController@leave')
 
 // Message facility
 Route::get('/contact/message/{propertyId?}', 'MessageController@index')
+    ->where('propertyId', '[0-9]+')
     ->name('message');
 
 // Send a message via web form

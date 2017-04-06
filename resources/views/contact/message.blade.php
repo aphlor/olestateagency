@@ -28,7 +28,16 @@
                 <input type="text" name="email" id="email" class="form-control" value="{{ isset($user) ? $user->email : '' }}" />
 
                 <label for="message">Message</label>
-                <textarea class="form-control" name="message" id="message"></textarea>
+                @if (isset($property))
+                    <textarea class="form-control" name="message" id="message"> Hello,
+
+I am interested in arranging a viewing for property (ID# {{ $property->id }}) at:
+    {{ $property->address_line_1 }}, {{ $property->address_line_2 }}, {{ $property->town }}, {{ $property->postcode }}
+
+Please contact me on my telephone number</textarea>
+                @else
+                    <textarea class="form-control" name="message" id="message"></textarea>
+                @endif
 
                 <hr />
 
@@ -37,4 +46,13 @@
         </div>
     </div></div>
 </div>
+
+@if (isset($property))
+    <script>
+    $(document).ready(function () {
+        $("#message").focus()
+        $("#message").val($("#message").val() + ' ')
+    })
+    </script>
+@endif
 @endsection

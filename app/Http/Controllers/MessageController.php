@@ -58,7 +58,7 @@ class MessageController extends Controller
             ->send(new Contact([
                 'senderName' => $request->input('name', '<empty>'),
                 'senderEmail' => $request->input('email', '<empty>'),
-                'body' => nl2br(htmlspecialchars($request->input('message', ''))),
+                'body' => strip_tags(html_entity_decode($request->input('message', ''))),
             ]));
 
         return view('contact.sent');

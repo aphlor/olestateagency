@@ -10,6 +10,7 @@ use App\Models\PropertyImage;
 use App\Models\PropertyStatus;
 use App\Models\FeaturedProperty;
 use App\Models\SavedSearch;
+use App\Models\SavedProperty;
 
 class PropertyListController extends Controller
 {
