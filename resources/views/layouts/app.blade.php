@@ -14,6 +14,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/extra.css') }}" rel="stylesheet">
         <link href="{{ asset('css/simplemde.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/lightbox.min.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         <script>

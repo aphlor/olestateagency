@@ -13,6 +13,7 @@ This project makes use of the following, with immense gratitude:
 - [SimpleMDE](https://github.com/NextStepWebs/simplemde-markdown-editor)
 - [cebe](https://github.com/cebe/)'s [markdown](https://github.com/cebe/markdown) parser
 - Royalty-free stock photographs from [FreeImages](http://www.freeimages.com/)
+- [Lightbox](http://lokeshdhakar.com/projects/lightbox2/)
 - A number of other similarly great tools required by the above, not least [PHP](http://www.php.net/), [composer](http://getcomposer.org/), [jQuery](http://jquery.com/)
 
 ## License

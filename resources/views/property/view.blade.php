@@ -7,12 +7,18 @@
 
     <div class="row">
         <div class="col-md-3 list-image-area">
-            <div class="row"><img src="{{ asset('img/property-images/' . $property->propertyImage->first()->image_filename) }}" class="list-propertyimage" alt="house" /></div>
+            <div class="row">
+                <a href="{{ asset('img/property-images/' . $property->propertyImage->first()->image_filename) }}" data-lightbox="property-images">
+                    <img src="{{ asset('img/property-images/' . $property->propertyImage->first()->image_filename) }}" class="list-propertyimage" alt="house" />
+                </a>
+            </div>
             <hr/>
             @foreach ($images as $imageRow)
                 <div class="row">
                     @foreach ($imageRow as $pos => $image)
-                        <img src="{{ asset('img/property-images/' . $image->image_filename) }}" class="list-imageicon" alt="house" />
+                        <a href="{{ asset('img/property-images/' . $image->image_filename) }}" data-lightbox="property-images">
+                            <img src="{{ asset('img/property-images/' . $image->image_filename) }}" class="list-imageicon" alt="house" />
+                        </a>
                         @if ($pos < 2)
                             <span class="twopspacer"></span>
                         @endif
@@ -28,7 +34,7 @@
         </div>
         <div class="col-md-3 view-buttons">
             <div class="row">
-                <a href="/contact/mail/property/{{ $property->id }}" class="btn btn-default">Request a viewing</a>
+                <a href="/contact/message/{{ $property->id }}" class="btn btn-info">Request a viewing</a>
             </div>
             @if (Auth::check())
                 <div class="row">
@@ -40,9 +46,11 @@
                 </div>
             @endif
             <div class="row">
-                <a href="/contact/chat/property/{{ $property->id }}" class="btn btn-default">Chat to an agent</a>
+                <a href="/contact/chat/property/{{ $property->id }}" class="btn btn-primary">Chat to an agent</a>
             </div>
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/lightbox.min.js') }}"></script>
 @endsection

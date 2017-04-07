@@ -31,6 +31,10 @@ h4.list-price {
     color: red;
 }
 
+textarea#message {
+    height: 12em;
+}
+
 footer {
     background-color: #220022;
     color: white;
