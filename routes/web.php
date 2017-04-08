@@ -16,6 +16,19 @@ Route::get('/', 'HomeController@index')
 Route::get('/admin/user', 'UserManagerController@index')
     ->name('usermanager');
 
+// Forcibly send password reset
+Route::get('/admin/resetPassword/{userId}', 'UserManagerController@resetPassword')
+    ->where('userId', '[0-9]+');
+
+// Deactivate an account
+Route::get('/admin/deactivateuser/{userId}', 'UserManagerController@deactivate')
+    ->where('userId', '[0-9]+');
+
+// Activate an account
+Route::get('/admin/activateuser/{userId}', 'UserManagerController@activate')
+    ->where('userId', '[0-9]+');
+
+
 // Web-based chat facility --------------------------------------------------------------
 
 // Chat setup
