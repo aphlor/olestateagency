@@ -38,6 +38,6 @@ class SavedProperty extends Model
      */
     public function property()
     {
-        return $this->hasOne(PriceFormat::class, 'id', 'property_id');
+        return $this->hasOne(Property::class, 'id', 'property_id');
     }
 }

@@ -74,12 +74,16 @@ Route::get('/properties/restore/{id}', 'PropertyListController@restore')
 // Save a search
 Route::post('/properties/savesearch', 'PropertyListController@saveSearch');
 
+// View saved properties
+Route::get('/properties/saved', 'PropertyListController@savedProperties');
+
+
+// Property display panel ---------------------------------------------------------------
+
 // View the requested property
 Route::get('/property/{id}', 'PropertyController@index')
     ->name('property')
     ->where('id', '[0-9]+');
-
-// Property display panel ---------------------------------------------------------------
 
 // Add a new property to the system
 Route::get('/property/create', 'PropertyController@create')

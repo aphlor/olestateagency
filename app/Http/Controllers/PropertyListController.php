@@ -160,12 +160,41 @@ class PropertyListController extends Controller
         }
 
         return view('property.index', [
+            'saved' => false,
             'bedrooms' => self::$bedrooms,
             'totalProperties' => count($featuredProperties) + count($properties),
             'featuredProperties' => $featuredProperties,
             'properties' => $properties,
             'filters' => json_encode($filters),
             'filterData' => $filters,
+        ]);
+    }
+
+    /**
+     * Show the list of saved properties
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function savedProperties(Request $request)
+    {
+        if (!Auth::check()) {
+            abort(403, 'User not logged in');
+        }
+
+        $savedProperties = SavedProperty::where('user_id', Auth::user()->id)->get();
+
+        $properties = [];
+
+        foreach ($savedProperties as $savedProperty) {
+            $properties[] = $savedProperty->property;
+        }
+
+        return view('property.index', [
+            'saved' => true,
+            'totalProperties' => count($properties),
+            'featuredProperties' => [],
+            'properties' => $properties,
         ]);
     }
 
