@@ -17,8 +17,8 @@ class CreatePropertiesTable extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->increments('id');           // primary key
             $table->text('title');              // property headline title
-            $table->text('subtitle')
-                  ->nullable();                 // property subtitle
+            // $table->text('subtitle')
+            //       ->nullable();                 // property subtitle
             $table->text('description')
                   ->nullable();                 // long-format description for detail view
             $table->text('short_description')
@@ -34,11 +34,6 @@ class CreatePropertiesTable extends Migration
                   ->nullable();
             $table->string('postcode')
                   ->nullable();
-            $table->integer('vendor_user_id')
-                  ->unsigned();
-            $table->foreign('vendor_user_id')
-                  ->references('id')
-                  ->on('users');
             $table->float('price', 10, 2);      // price; 10 digits total, 2 of which are pence
             $table->integer('price_format_id')
                   ->unsigned();
@@ -57,7 +52,6 @@ class CreatePropertiesTable extends Migration
         DB::statement('
             ALTER TABLE properties
                     ADD FULLTEXT key_search (title,
-                                             subtitle,
                                              description,
                                              short_description,
                                              address_line_1,

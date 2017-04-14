@@ -108,7 +108,7 @@ class PropertyListController extends Controller
         }
 
         if (!empty($filters['keywords'])) {
-            $keywordTest = function ($title, $subtitle, $description, $shortDescription) use ($filters) {
+            $keywordTest = function ($title, $description, $shortDescription) use ($filters) {
                 // prepare a word count list
                 $words = $filters['keywords'];
                 array_walk($words, function (&$item) {
@@ -122,11 +122,10 @@ class PropertyListController extends Controller
                 // perform the actual search
                 foreach ($words as $word => $count) {
                     $titleCount = (int) preg_match('/\b' . $word . '\b/i', $title);
-                    $subtitleCount = (int) preg_match('/\b' . $word . '\b/i', $subtitle);
                     $descriptionCount = (int) preg_match('/\b' . $word . '\b/i', $description);
                     $shortDescriptionCount = (int) preg_match('/\b' . $word . '\b/i', $shortDescription);
 
-                    $words[$word] = $titleCount + $subtitleCount + $descriptionCount + $shortDescriptionCount;
+                    $words[$word] = $titleCount + $descriptionCount + $shortDescriptionCount;
                 }
 
                 // return 'false' for anything which wasn't matched
@@ -143,7 +142,6 @@ class PropertyListController extends Controller
             $featuredProperties = $featuredProperties->reject(function ($featuredProperty) use ($filters, $keywordTest) {
                 return $keywordTest(
                     $featuredProperty->property->title,
-                    $featuredProperty->property->subtitle,
                     strip_tags($featuredProperty->property->description),
                     strip_tags($featuredProperty->property->short_description)
                 );
@@ -152,7 +150,6 @@ class PropertyListController extends Controller
             $properties = $properties->reject(function ($property) use ($filters, $keywordTest) {
                 return $keywordTest(
                     $property->title,
-                    $property->subtitle,
                     strip_tags($property->description),
                     strip_tags($property->short_description)
                 );

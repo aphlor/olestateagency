@@ -130,6 +130,26 @@ class PropertyController extends Controller
             abort(403, 'Unauthorized action');
         }
 
+        if ($request->input('save', false)) {
+            // someone hit 'save'
+            $property = Property::create([
+                'title' => $request->input('propertyTitle'),
+                'description' => $request->input('description'),
+                'short_description' => $request->input('shortDescription'),
+                'bedrooms' => $request->input('bedrooms'),
+                'address_line_1' => $request->input('address1'),
+                'address_line_2' => $request->input('address2'),
+                'town' => $request->input('town'),
+                'county' => $request->input('county'),
+                'postcode' => $request->input('postcode'),
+                'price' => $request->input('price'),
+                'price_format_id' => $request->input('priceFormat'),
+                'property_status_id' => 1,
+            ]);
+
+            return $this->index($request, $property->id);
+        }
+
         return view('property.add', [
             'propertyTitle' => '',
             'address1' => '',
@@ -138,10 +158,47 @@ class PropertyController extends Controller
             'county' => '',
             'postcode' => '',
             'price' => '',
+            'bedrooms' => '',
             'priceFormat' => '',
             'priceFormats' => PriceFormat::all(),
             'shortDescription' => '',
             'description' => '',
+        ]);
+    }
+
+    /**
+     * Manage images for a property
+     *
+     * @param Request $request  The request object
+     * @param int     $id       Property ID to save
+     * @return \Illuminate\Http\Response
+     */
+    public function images(Request $request, int $id)
+    {
+        if (Gate::denies('can-manage-properties')) {
+            abort(403, 'Unauthorized action');
+        }
+
+        // check for a file upload
+        if ($request->file('file') && $request->file('file')->isValid()) {
+            $filePath = $request->file('file')->store('property-images');
+
+            $propertyImage = PropertyImage::create([
+                'property_id' => $id,
+                'image_filename' => $filePath,
+                'display_order' => 0,
+                'description' => 'Property image',
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'imageId' => $propertyImage->id,
+            ]);
+        }
+
+        // show the view
+        return view('property.images', [
+            'propertyId' => $id,
         ]);
     }
 

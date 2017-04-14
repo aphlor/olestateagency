@@ -5,6 +5,8 @@ server {
 
 	root /vagrant/public;
 
+	client_max_body_size 16M;
+
 	# If no file is specified, which files do we look for (in order)
 	index index.php index.html;
 

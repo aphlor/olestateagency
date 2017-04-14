@@ -35,6 +35,19 @@ textarea#message {
     height: 12em;
 }
 
+/*.dropzone {
+    border: 2px dashed grey;
+    border-radius: 5px;
+    background: white;
+    min-height: 150px;
+    box-sizing: border-box;
+}
+
+.dz-message {
+    text-align: center;
+    margin: 2em 0 2em 0;
+}*/
+
 footer {
     background-color: #220022;
     color: white;

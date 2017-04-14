@@ -28,7 +28,6 @@ Route::get('/admin/deactivateuser/{userId}', 'UserManagerController@deactivate')
 Route::get('/admin/activateuser/{userId}', 'UserManagerController@activate')
     ->where('userId', '[0-9]+');
 
-
 // Web-based chat facility --------------------------------------------------------------
 
 // Chat setup
@@ -99,8 +98,12 @@ Route::get('/property/{id}', 'PropertyController@index')
     ->where('id', '[0-9]+');
 
 // Add a new property to the system
-Route::get('/property/create', 'PropertyController@create')
+Route::match(['get', 'post'], '/property/create', 'PropertyController@create')
     ->name('addproperty');
+
+// Add images to a property
+Route::match(['get', 'post'], '/property/images/{propertyId}', 'PropertyController@images')
+    ->where('propertyId', '[0-9]+');
 
 // Edit a property
 Route::get('/property/edit/{propertyId?}', 'PropertyController@edit')

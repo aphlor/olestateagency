@@ -9,14 +9,14 @@
                 <div class="panel-body">
                     <p>Manage your content pages. Alternatively, <a href="/content/create">create a new page</a>.</p>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <div class="input-group">
                             <input type="text" class="form-control" id="user-filter" placeholder="Enter part of a page title to filter the page list" autofocus />
                             <span class="input-group-btn">
                                 <button class="btn btn-success">Filter</button>
                             </span>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <table class="table">

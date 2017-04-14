@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
 
         Property::create([
             'title' => 'Victorian townhouse',
-            'subtitle' => 'Luxurious townhouse situated in a quiet area of Bath',
+            // 'subtitle' => 'Luxurious townhouse situated in a quiet area of Bath',
             'description' => '<ul>' .
                 '    <li>Three floors</li>' .
                 '    <li>Situated in the circus area of Bath</li>' .
@@ -100,10 +100,10 @@ class DatabaseSeeder extends Seeder
             'town' => 'Bath',
             'county' => 'Bath & North East Somerset',
             'postcode' => 'BA2 6AH',
-            'vendor_user_id' => (
-                User::where('email', 'test+normal@example.ex')
-                    ->get()
-            )[0]->id,
+            // 'vendor_user_id' => (
+            //     User::where('email', 'test+normal@example.ex')
+            //         ->get()
+            // )[0]->id,
             'price' => 4500000,
             'price_format_id' => (
                 PriceFormat::where('display_text', 'Offers in excess of')
@@ -125,12 +125,12 @@ class DatabaseSeeder extends Seeder
 
         $order = 0;
         $images = [
-            'old-house-1194752.jpg',
-            'designer-lounge-1-1516668.jpg',
-            'hotel-bathroom-1213410.jpg',
-            'interior-1554474.jpg',
-            'kitchen-1256737.jpg',
-            'paradise-1526185.jpg',
+            'property-images/old-house-1194752.jpg',
+            'property-images/designer-lounge-1-1516668.jpg',
+            'property-images/hotel-bathroom-1213410.jpg',
+            'property-images/interior-1554474.jpg',
+            'property-images/kitchen-1256737.jpg',
+            'property-images/paradise-1526185.jpg',
         ];
         foreach ($images as $image) {
             PropertyImage::create([
@@ -146,7 +146,7 @@ class DatabaseSeeder extends Seeder
 
         Property::create([
             'title' => 'Five bedroom mill conversion',
-            'subtitle' => 'Rustic country property, formerly a working mill',
+            // 'subtitle' => 'Rustic country property, formerly a working mill',
             'description' => '<ul>' .
                 '    <li>Two en-suite bathrooms</li>' .
                 '    <li>Large lounge with wood burner</li>' .
@@ -163,10 +163,10 @@ class DatabaseSeeder extends Seeder
             'town' => 'Compton Durville',
             'county' => 'Somerset',
             'postcode' => 'TA13 5XT',
-            'vendor_user_id' => (
-                User::where('email', 'test+normal@example.ex')
-                    ->get()
-            )[0]->id,
+            // 'vendor_user_id' => (
+            //     User::where('email', 'test+normal@example.ex')
+            //         ->get()
+            // )[0]->id,
             'price' => 450000,
             'price_format_id' => (
                 PriceFormat::where('display_text', 'Offers around')
@@ -184,13 +184,13 @@ class DatabaseSeeder extends Seeder
                     ->get()
             )[0]->id,
             'display_order' => 0,
-            'image_filename' => 'house-1188265.jpg',
+            'image_filename' => 'property-images/house-1188265.jpg',
             'description' => 'House image',
         ]);
 
         Property::create([
             'title' => 'Shack in the desert',
-            'subtitle' => 'Basic amenities, tranquil setting',
+            // 'subtitle' => 'Basic amenities, tranquil setting',
             'description' => '<ul>' .
                 '    <li>En-suite bush</li>' .
                 '    <li>Easy access to the great outdoors</li>' .
@@ -207,10 +207,10 @@ class DatabaseSeeder extends Seeder
             'town' => 'Trowbridge',
             'county' => 'Wiltshire',
             'postcode' => 'BA14 7UJ',
-            'vendor_user_id' => (
-                User::where('email', 'test+normal@example.ex')
-                    ->get()
-            )[0]->id,
+            // 'vendor_user_id' => (
+            //     User::where('email', 'test+normal@example.ex')
+            //         ->get()
+            // )[0]->id,
             'price' => 450,
             'price_format_id' => (
                 PriceFormat::where('display_text', 'Offers around')
@@ -228,7 +228,7 @@ class DatabaseSeeder extends Seeder
                     ->get()
             )[0]->id,
             'display_order' => 0,
-            'image_filename' => 'house-1530503.jpg',
+            'image_filename' => 'property-images/house-1530503.jpg',
             'description' => 'House image',
         ]);
     }

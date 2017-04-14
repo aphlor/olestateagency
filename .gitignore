@@ -8,6 +8,7 @@
 # laravel ignores
 /node_modules
 /public/storage
+/public/img/property-images
 /public/hot
 /storage/*.key
 /vendor

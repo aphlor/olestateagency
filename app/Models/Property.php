@@ -23,7 +23,6 @@ class Property extends Model
      */
     protected $fillable = [
         'title',
-        'subtitle',
         'description',
         'short_description',
         'bedrooms',
@@ -32,7 +31,7 @@ class Property extends Model
         'town',
         'county',
         'postcode',
-        'vendor_user_id',
+        // 'vendor_user_id',
         'price',
         'price_format_id',
         'property_status_id',
@@ -43,10 +42,10 @@ class Property extends Model
      *
      * @return Model
      */
-    public function vendor()
-    {
-        return $this->hasOne(User::class, 'id', 'vendor_user_id');
-    }
+    // public function vendor()
+    // {
+    //     return $this->hasOne(User::class, 'id', 'vendor_user_id');
+    // }
 
     /**
      * Foreign key for price format

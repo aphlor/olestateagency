@@ -5,7 +5,7 @@
     @foreach ($featuredProperties as $featuredProperty)
     <a href="/property/{{ $featuredProperty->property->id }}" class="property-link"><div class="row feature-property">
         <div class="col-md-3">
-            <img src="{{ asset('img/property-images/' . $featuredProperty->property->propertyImage->first()->image_filename) }}" class="list-propertyimage" alt="house" />
+            <img src="{{ asset('img/' . $featuredProperty->property->propertyImage->first()->image_filename) }}" class="list-propertyimage" alt="house" />
         </div>
         <div class="col-md-9">
             <h4>{{ $featuredProperty->property->title }}</h4>
