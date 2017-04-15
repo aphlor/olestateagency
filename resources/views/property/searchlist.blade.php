@@ -33,7 +33,7 @@
                                 <td>{{ $search['terms'] }}</td>
                                 <td>{{ $search['dateSaved']}}</td>
                                 <td>
-                                    <a href="/properties/restore/{{ $search['id'] }}" class="btn btn-success">View search</a>
+                                    <a href="/properties/restore/{{ $search['id'] }}" id="search-{{ md5($search['name']) }}" class="btn btn-success">View search</a>
                                 </td>
                             </tr>
                         @endforeach
