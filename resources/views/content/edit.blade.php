@@ -13,9 +13,9 @@
             <div class="form-group">
                 <form method="post" action="/content/create">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" name="title" value="{{ $title }}" placeholder="Enter page title here" />
+                    <input type="text" class="form-control" name="title" id="title" value="{{ $title }}" placeholder="Enter page title here" />
 
-                    <label for="page">Body</label>
+                    <label for="editor-body">Body</label>
                     <textarea class="form-control" id="editor-body" name="body">{{ $body }}</textarea>
 
                     <hr />
