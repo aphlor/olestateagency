@@ -5,7 +5,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Modelizer\Selenium\SeleniumTestCase;
 
-class PropertyListTest extends SeleniumTestCase
+class PropertyTest extends SeleniumTestCase
 {
     /**
      * Test property view
