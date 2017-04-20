@@ -16,7 +16,8 @@ class CreateContentsTable extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
             $table->text('title');
-            $table->mediumText('content');
+            $table->mediumText('content')
+                  ->nullable();
             $table->text('path');
             $table->timestamps();
             $table->softDeletes();

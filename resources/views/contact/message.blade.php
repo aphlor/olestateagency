@@ -41,7 +41,7 @@ Please contact me on my telephone number</textarea>
 
                 <hr />
 
-                <input type="submit" class="btn btn-success" value="Send" />
+                <input type="submit" class="btn btn-success" id="#btn-send" value="Send" />
             </form>
         </div>
     </div></div>

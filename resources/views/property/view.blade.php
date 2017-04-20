@@ -43,9 +43,9 @@
             @if (Auth::check())
                 <div class="row">
                     @if ($isSaved)
-                        <a href="/property/forget/{{ $property->id }}" class="btn btn-danger">Remove from &quot;My properties&quot;</a>
+                        <a href="/property/forget/{{ $property->id }}" id="btn-remove" class="btn btn-danger">Remove from &quot;My properties&quot;</a>
                     @else
-                        <a href="/property/save/{{ $property->id }}" class="btn btn-success">Save to &quot;My properties&quot;</a>
+                        <a href="/property/save/{{ $property->id }}" id="btn-save" class="btn btn-success">Save to &quot;My properties&quot;</a>
                     @endif
                 </div>
             @endif

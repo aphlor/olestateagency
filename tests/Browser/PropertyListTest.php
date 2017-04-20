@@ -12,7 +12,7 @@ class PropertyListTest extends SeleniumTestCase
      *
      * @return void
      */
-    public function testAuthenticationSuccess()
+    public function testUnfilteredProperties()
     {
         $this->visit('/properties')
              ->see('Victorian townhouse')
